@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>しあん | ホームページ</title>
+  <style>
+    :root {
+      --bg-color: #000;
+      --text-color: #fff;
+      --accent-color: #4fc3f7;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    /* 星空背景 */
+    canvas#starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+      padding: 0 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+    }
+
+    /* SNSリンク */
+    .sns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .sns a {
+      color: var(--text-color);
+      text-decoration: none;
+      border: 1px solid var(--accent-color);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+    .sns a:hover {
+      background: var(--accent-color);
+      color: #000;
+    }
+
+    /* 作品一覧 */
+    section.projects {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+    }
+    .projects h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .project-card h3 {
+      margin-top: 0;
+      color: var(--accent-color);
+    }
+    .project-links {
+      margin-top: 0.5rem;
+    }
+    .project-links a {
+      margin-right: 1rem;
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+
+  <header class="hero">
+    <h1>しあん</h1>
+    <p>有能(？)フルスタックエンジニア / 淫夢厨 / 日本人 / BrainFuckガチ恋勢(？) <br />使用可能言語 : html,css,js / Node.js / Java(勉強中) / C++ (勉強中)</p>
+    <div class="sns">
+      <a href="https://x.com/dev_cyan" target="_blank" rel="noopener">X</a>
+      <a href="https://discord.gg/nq2tQXHAXt" target="_blank" rel="noopener">Discord</a>
+      <a href="https://github.com/cyan-cs" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section class="projects">
+    <h2>作ったもの</h2>
+    <div class="project-card">
+      <h3>Aqua-log</h3>
+      <p>8.48 kBの超軽い高性能ロガー</p>
+      <div class="project-links">
+        <a href="https://github.com/cyan-cs/Aqua-log" target="_blank" rel="noopener">GitHub</a>
+        <span>npm: <code>npm i aqua-log</code></span>
+      </div>
+    </div>
+    <div class="project-card">
+      <h3>aqua-bot</h3>
+      <p>Discord.jsで作成した汎用DiscordBOT</p>
+      <div class="project-links">
+        <a href="https://github.com/cyan-cs/Aqua-bot" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // 星空アニメーション
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < 150; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5,
+          speed: Math.random() * 0.5 + 0.05
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function updateStars() {
+      stars.forEach(star => {
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      });
+    }
+
+    function animate() {
+      drawStars();
+      updateStars();
+      requestAnimationFrame(animate);
+    }
+
+    initStars();
+    animate();
+  </script>
+</body>
+</html>
