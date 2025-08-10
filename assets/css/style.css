@@ -1,0 +1,113 @@
+:root {
+    --main-color: #00bcd4;
+    --bg-color: #0e0e0e;
+    --text-color: #eee;
+    --card-bg: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+.hero h1 {
+    font-size: 3rem;
+    color: var(--main-color);
+}
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* セクション共通 */
+section {
+    padding: 4rem 0;
+}
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* 作品 */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+.work-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+.work-card:hover {
+    transform: translateY(-5px);
+}
+.work-card h3 {
+    color: var(--main-color);
+}
+.work-card a {
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* SNSリンク */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+.social-links a {
+    background: var(--card-bg);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--main-color);
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.social-links a:hover {
+    background: var(--main-color);
+    color: #000;
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #000;
+}
