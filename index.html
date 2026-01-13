@@ -1,224 +1,305 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>しあん | ホームページ</title>
-  <style>
-    :root {
-      --bg-color: #000;
-      --text-color: #fff;
-      --accent-color: #4fc3f7;
-    }
+  <meta charset="UTF-8">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "しあん | Profile",
+  "url": "https://aqua-site.pages.dev/",
+  "inLanguage": "ja",
+  "publisher": {
+    "@type": "Person",
+    "name": "しあん"
+  }
+}
+</script>
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      overflow-x: hidden;
-    }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* 星空背景 */
-    canvas#starfield {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-    }
+<title>しあん | Profile</title>
+<meta name="description" content="しあんのホームページです。">
+<link rel="canonical" href="https://aqua-site.pages.dev/">
+<link rel="icon" href="./assets/img/logo.png">
 
-    /* Hero */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 1;
-      position: relative;
-      padding: 0 1rem;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 4rem);
-      margin-bottom: 0.5rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--accent-color);
-      margin-bottom: 2rem;
-    }
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aqua-site.pages.dev/">
+<meta property="og:title" content="しあん | Profile">
+<meta property="og:description" content="しあんのホームページです。">
 
-    /* SNSリンク */
-    .sns {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .sns a {
-      color: var(--text-color);
-      text-decoration: none;
-      border: 1px solid var(--accent-color);
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      transition: 0.3s;
-    }
-    .sns a:hover {
-      background: var(--accent-color);
-      color: #000;
-    }
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://aqua-site.pages.dev/">
+<meta property="twitter:title" content="しあん | Profile">
+<meta property="twitter:description" content="しあんのホームページです。">
+<meta property="twitter:image" content="https://aqua-site.pages.dev/assets/img/logo.png">
 
-    /* 作品一覧 */
-    section.projects {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 4rem auto;
-      padding: 0 1rem;
-    }
-    .projects h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2rem;
-    }
-    .project-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .project-card h3 {
-      margin-top: 0;
-      color: var(--accent-color);
-    }
-    .project-links {
-      margin-top: 0.5rem;
-    }
-    .project-links a {
-      margin-right: 1rem;
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-    .project-links a:hover {
-      text-decoration: underline;
-    }
-    code {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-    }
-  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
 <body>
-  <canvas id="starfield"></canvas>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-outline" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+  <div id="scroll-line" aria-hidden="true"></div>
+  
+  <div class="ambient-light" aria-hidden="true"></div>
 
   <header class="hero">
-    <h1>しあん</h1>
-    <p>有能(？)フルスタックエンジニア / 淫夢厨 / 日本人 / BrainFuckガチ恋勢(？) <br />使用可能言語 : html,css,js / Node.js / Java(勉強中) / C++ (勉強中)</p>
-    <div class="sns">
-      <a href="https://x.com/dev_cyan" target="_blank" rel="noopener">X</a>
-      <a href="https://discord.gg/nq2tQXHAXt" target="_blank" rel="noopener">Discord</a>
-      <a href="https://github.com/cyan-cs" target="_blank" rel="noopener">GitHub</a>
-    </div>
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+<div class="hero-content">
+  <h1 class="glitch-text">しあん</h1>
+  <p>有能(？)フルスタックエンジニア / 日本人 / BrainFuckガチ恋勢(？)</p>
+  <p class="skills">HTML / CSS / JavaScript / Node.js / Java(勉強中) / C++(勉強中)</p>
+  
+  <div class="social-links">
+    <a href="https://x.com/dev_cyan" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+    <a href="https://discord.gg/nq2tQXHAXt" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="https://github.com/cyan-cs" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+</div>
+
   </header>
 
-  <section class="projects">
-    <h2>作ったもの</h2>
-    <div class="project-card">
-      <h3>Aqua-log</h3>
-      <p>8.48 kBの超軽い高性能ロガー</p>
-      <div class="project-links">
-        <a href="https://github.com/cyan-cs/Aqua-log" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.npmjs.com/package/aqua-log" target="_blank" rel="noopener">npm</a>
-      </div>
-    </div>
-    <div class="project-card">
-      <h3>aqua-bot</h3>
-      <p>Discord.jsで作成した汎用DiscordBOT</p>
-      <div class="project-links">
-        <a href="https://github.com/cyan-cs/Aqua-bot" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-      <div class="project-card">
-      <h3>RomajiChatPlugin</h3>
-      <p>.が付いたローマ字のチャットを日本語に変換してチャットに送信するプラグイン</p>
-      <div class="project-links">
-        <a href="https://github.com/cyan-cs/RomajiChatPlugin" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-      <div class="project-card">
-      <h3>CItem</h3>
-      <p>Javaで作ったマイクラの手に持っているアイテムを回すMOD</p>
-      <div class="project-links">
-        <a href="https://github.com/cyan-cs/CItem" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://modrinth.com/mod/citem" target="_blank" rel="noopener">modrinth</a>
-      </div>
-    </div>
-  </section>
+  <main class="container" id="main-content">
 
-  <script>
-    // 星空アニメーション
-    const canvas = document.getElementById('starfield');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
+      <section id="projects">
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+        <h2 class="reveal-up">Projects</h2>
 
-    function initStars() {
-      stars = [];
-      for (let i = 0; i < 150; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5,
-          speed: Math.random() * 0.5 + 0.05
-        });
-      }
-    }
+        <div class="works-grid">
 
-    function drawStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "white";
-      stars.forEach(star => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-    }
+          <article class="work-card reveal-up">
 
-    function updateStars() {
-      stars.forEach(star => {
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
-      });
-    }
+            <h3>Aqua-log</h3>
 
-    function animate() {
-      drawStars();
-      updateStars();
-      requestAnimationFrame(animate);
-    }
+            <p>8.48 kBの超軽い高性能ロガー。Node.js環境でのログ管理をスマートに。</p>
 
-    initStars();
-    animate();
-  </script>
+            <div class="card-links">
+
+              <a href="https://github.com/cyan-cs/Aqua-log" target="_blank" rel="noopener noreferrer">GitHub</a>
+
+              <a href="https://www.npmjs.com/package/aqua-log" target="_blank" rel="noopener noreferrer">npm</a>
+
+            </div>
+
+          </article>
+
+  
+
+          <article class="work-card reveal-up">
+
+            <h3>Aqua-bot</h3>
+
+            <p>Discord.jsで作成した汎用DiscordBOT。多機能かつ安定した動作を実現。</p>
+
+            <div class="card-links">
+
+              <a href="https://github.com/cyan-cs/Aqua-bot" target="_blank" rel="noopener noreferrer">GitHub</a>
+
+            </div>
+
+          </article>
+
+  
+
+          <article class="work-card reveal-up">
+
+            <h3>RomajiChatPlugin</h3>
+
+            <p>ローマ字チャットを日本語に変換するプラグイン。ドット始動のコマンド形式を採用。</p>
+
+            <div class="card-links">
+
+              <a href="https://github.com/cyan-cs/RomajiChatPlugin" target="_blank" rel="noopener noreferrer">GitHub</a>
+
+            </div>
+
+          </article>
+
+  
+
+          <article class="work-card reveal-up">
+
+            <h3>CItem</h3>
+
+            <p>Java製マイクラMOD。手に持っているアイテムを回転させる視覚的演出を追加。</p>
+
+            <div class="card-links">
+
+              <a href="https://github.com/cyan-cs/CItem" target="_blank" rel="noopener noreferrer">GitHub</a>
+
+              <a href="https://modrinth.com/mod/citem" target="_blank" rel="noopener noreferrer">Modrinth</a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+  
+
+      <section id="status">
+
+        <h2 class="reveal-up">Status / Logic</h2>
+
+        <div class="status-card reveal-up">
+
+          <div class="status-item">
+
+            <label>JavaScript / Node.js</label>
+
+            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-valuetext="JavaScript / Node.js 85%"><div class="progress" style="width: 85%;"></div></div>
+
+          </div>
+
+  
+
+          <div class="status-item">
+
+            <label>HTML5 / CSS3 (Design)</label>
+
+            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-valuetext="HTML5 / CSS3 (Design) 75%"><div class="progress" style="width: 75%;"></div></div>
+
+          </div>
+
+  
+
+          <div class="status-item">
+
+            <label>Java / C++ (Learning Phase)</label>
+
+            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-valuetext="Java / C++ (Learning Phase) 45%"><div class="progress" style="width: 45%;"></div></div>
+
+          </div>
+
+  
+
+          <div class="status-item">
+
+            <label>illustration</label>
+
+            <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" aria-valuetext="illustration 1%"><div class="progress" style="width: 1%;"></div></div>
+
+          </div>
+
+  
+
+          <div class="status-item">
+
+            <label>BrainFuck Passion / Curiosity</label>
+
+            <div class="progress-bar infinite" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-valuetext="BrainFuck Passion / Curiosity: 無限の熱意"><div class="progress"></div></div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+  
+
+      <section id="equipment">
+
+        <h2 class="reveal-up">Equipment / Setup</h2>
+
+        <div class="equipment-grid">
+
+          <div class="equip-card reveal-up">
+
+            <span class="category">OS</span>
+
+            <h3>Windows 11</h3>
+
+            <p>開発・日常利用ともにWindowsをメインに使用</p>
+
+          </div>
+
+  
+
+          <div class="equip-card reveal-up">
+
+            <span class="category">HardWare</span>
+
+            <h3>CPU:Ryzen 7 7700 / GPU:Radeon RX 7600 / RAM:32GB</h3>
+
+            <p>ビルド・実行・マルチタスクにも余裕のある構成</p>
+
+          </div>
+
+  
+
+          <div class="equip-card reveal-up">
+
+            <span class="category">pen tablet</span>
+
+            <h3>Wacom Intuos Medium ベーシック CTL-6100/K2 </h3>
+
+            <p>描画・イラスト制作に使用</p>
+
+          </div>
+
+  
+
+          <div class="equip-card reveal-up">
+
+            <span class="category">Editor</span>
+
+            <h3>VS Code / Visual Studio 2022</h3>
+
+            <p>拡張機能を活用し、開発効率と可読性を重視</p>
+
+          </div>
+
+  
+
+          <div class="equip-card reveal-up">
+
+            <span class="category">Art software</span>
+
+            <h3>CLIP STUDIO PAINT PRO Ver.4.0 </h3>
+
+            <p>描画・イラスト制作に使用</p>
+
+          </div>
+
+  
+
+          <div class="equip-card reveal-up">
+
+            <span class="category">Fuel</span>
+
+            <h3>sweet sweets / snack food</h3>
+
+            <p>深夜開発を支える糖分補給枠</p>
+
+          </div>
+
+          
+
+        </div>
+
+        
+
+      </section>
+
+    </main>
+
+  <footer>
+    <p>&copy; 2024–2026 cyan-cs</p>
+    <p>Last updated: 2026-01</p>
+  </footer>
+
+  <script src="./assets/js/main.js"></script>
+  <a href="#" id="back-to-top" class="back-to-top" aria-label="Back to top">↑</a>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark theme">🌙</button>
 </body>
 </html>
-
-
-
