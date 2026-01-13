@@ -34,7 +34,7 @@
                 }
             });
         }, {
-            rootMargin: '0px 0px -50px 0px' // Trigger a little after it enters viewport
+            rootMargin: '0px 0px -50px 0px'
         });
 
         revealElements.forEach(element => {
@@ -210,7 +210,7 @@
             });
 
             card.addEventListener("mouseleave", () => {
-                card.style.transition = 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; // Even more slowly
+                card.style.transition = 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
                 card.style.transform =
                     "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
             });
@@ -237,3 +237,4 @@
         });
     }
 })();
+
